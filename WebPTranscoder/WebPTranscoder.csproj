@@ -111,9 +111,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="libwebp.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="lib\libwebp.dll" />
   </ItemGroup>
   <ItemGroup>

@@ -57,13 +57,12 @@
       this.trayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
       this.trayMenu.Name = "trayMenu";
-      this.trayMenu.Size = new System.Drawing.Size(103, 28);
-      this.trayMenu.Opening += new System.ComponentModel.CancelEventHandler(this.trayMenu_Opening);
+      this.trayMenu.Size = new System.Drawing.Size(211, 56);
       // 
       // exitToolStripMenuItem
       // 
       this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      this.exitToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
+      this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
       this.exitToolStripMenuItem.Text = "Exit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
       // 
@@ -74,7 +73,6 @@
       this.ClientSize = new System.Drawing.Size(800, 450);
       this.Name = "Form1";
       this.Text = "Form1";
-      this.Load += new System.EventHandler(this.Form1_Load);
       this.trayMenu.ResumeLayout(false);
       this.ResumeLayout(false);
 

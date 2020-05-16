@@ -44,21 +44,17 @@ namespace WebPTranscoder {
           fs.Read(content, 0, (int)fs.Length);
           ImageFactory imageFactory = new ImageFactory(false);
           string pngPath = Path.ChangeExtension(Path.GetTempFileName(), "png");
-          imageFactory.Load(content).Format(new PngFormat()).Save(pngPath);
+          try {
+            imageFactory.Load(content).Format(new PngFormat()).Save(pngPath);
+          } catch (Exception) {
+            trayIcon.ShowBalloonTip(2000, "", "There was error while trying to open image.", ToolTipIcon.Error);
+          }
           StringCollection resultCollection = new StringCollection {
           pngPath
         };
           Clipboard.SetFileDropList(resultCollection);
         }
       }
-    }
-
-    private void trayMenu_Opening(object sender, CancelEventArgs e) {
-
-    }
-
-    private void Form1_Load(object sender, EventArgs e) {
-
     }
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e) {

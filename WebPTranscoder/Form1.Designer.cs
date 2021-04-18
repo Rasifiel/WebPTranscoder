@@ -48,7 +48,7 @@
       // 
       this.trayIcon.ContextMenuStrip = this.trayMenu;
       this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
-      this.trayIcon.Text = "notifyIcon1";
+      this.trayIcon.Text = "WebP transcoder";
       this.trayIcon.Visible = true;
       // 
       // trayMenu
@@ -57,12 +57,12 @@
       this.trayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
       this.trayMenu.Name = "trayMenu";
-      this.trayMenu.Size = new System.Drawing.Size(211, 56);
+      this.trayMenu.Size = new System.Drawing.Size(103, 28);
       // 
       // exitToolStripMenuItem
       // 
       this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-      this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+      this.exitToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
       this.exitToolStripMenuItem.Text = "Exit";
       this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
       // 

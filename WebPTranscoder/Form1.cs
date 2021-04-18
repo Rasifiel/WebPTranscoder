@@ -21,11 +21,29 @@ namespace WebPTranscoder {
 
     private void clipboard_ClipboardChanged(object sender, WK.Libraries.SharpClipboardNS.SharpClipboard.ClipboardChangedEventArgs e) {
       if (e.ContentType == WK.Libraries.SharpClipboardNS.SharpClipboard.ContentTypes.Files) {
+        if (clipboard.ClipboardFiles.Count>1) {
+          return;
+        }
         string path = clipboard.ClipboardFile;
         if (!File.Exists(path)) {
           return;
         }
-        using (FileStream fs = File.OpenRead(path)) {
+        FileStream fs = null;
+        try {
+          int retry = 0;
+          while (fs == null) {
+            try {
+              fs = File.OpenRead(path);
+              break;
+            } catch (Exception) {
+              // Do nothing
+            }
+            retry++;
+            if (retry > 3) {
+              return;
+            }
+            Task.Delay(100);
+          }
           byte[] signature = new byte[12];
           int size = fs.Read(signature, 0, 12);
           if (size < 12) {
@@ -47,12 +65,16 @@ namespace WebPTranscoder {
           try {
             imageFactory.Load(content).Format(new PngFormat()).Save(pngPath);
           } catch (Exception) {
-            trayIcon.ShowBalloonTip(2000, "", "There was error while trying to open image.", ToolTipIcon.Error);
+            trayIcon.ShowBalloonTip(1000, "", "There was error while trying to open image.", ToolTipIcon.Error);
           }
           StringCollection resultCollection = new StringCollection {
-          pngPath
-        };
+            pngPath
+          };
           Clipboard.SetFileDropList(resultCollection);
+        } finally {
+          if (fs != null) {
+            fs.Close();
+          }
         }
       }
     }
